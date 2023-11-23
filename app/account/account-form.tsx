@@ -89,12 +89,12 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
   return (
     <div className='flex justify-center items-center h-screen w-screen'>
-      <Card className="flex flex-col justify-center md:w-2/3 md:max-w-xl items-center form-widget bg-purple-500 text-neutral-800">
+      <Card className="flex flex-col justify-center md:w-2/3 md:max-w-xl items-center form-widget">
         <CardHeader className='text-center'>
           <CardTitle className='text-3xl'>Account Page</CardTitle>
-          <CardDescription className='text-neutral-800 text-base md:text-lg'>Please Fill in your account with the correct information.</CardDescription>
+          <CardDescription className='text-base md:text-lg'>Please Fill in your account with the correct information.</CardDescription>
         </CardHeader>
-        <CardContent className='flex flex-col gap-2 text-base md:text-lg md:w-2/3'>
+        <CardContent className='flex flex-col gap-2 text-base  md:w-2/3'>
         <div className='flex justify-center text-center'>
         <Avatar
           uid={user?.id as string}
@@ -109,11 +109,11 @@ export default function AccountForm({ session }: { session: Session | null }) {
         <div>
           
         </div>
-          <div className='flex justify-between'>
+          <div className='flex items-center justify-between'>
             <label htmlFor="email">Email:</label>
             <input className='p-1' id="email" type="text" value={session?.user.email} disabled />
           </div>
-          <div className='flex justify-between'>
+          <div className='flex items-center justify-between'>
             <label htmlFor="fullName">Full Name:</label>
             <input
               className='p-1'
@@ -123,7 +123,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
               onChange={(e) => setFullname(e.target.value)}
             />
           </div>
-          <div className='flex justify-between'>
+          <div className='flex items-center justify-between'>
             <label htmlFor="username">Username:</label>
             <input
               className='p-1'
@@ -136,7 +136,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
           <div className="form-widget">
 
       </div>
-          <div className='flex justify-between'>
+          <div className='flex items-center justify-between'>
             <label htmlFor="website">Website:</label>
             <input
               className='p-1'
@@ -149,8 +149,8 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
           <div>
             <Button
-            variant="ghost"
-              className="button primary text-xl flex items-center justify-center"
+              variant="default"
+              className="button primary text-lg flex items-center justify-center"
               onClick={() => updateProfile({ fullname, username, website, avatar_url })}
               disabled={loading}
             >
@@ -161,7 +161,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
 
         <CardFooter>
           <form action="/auth/signout" method="post">
-          <Button variant="secondary" className='button text-xl flex items-center justify-center' type='submit'>Sign Out</Button>
+          <Button variant="outline" className='button text-xl flex items-center justify-center' type='submit'>Sign Out</Button>
           </form>
         </CardFooter>
       </Card>

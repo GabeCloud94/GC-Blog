@@ -1,5 +1,5 @@
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
-import { cn } from '@/utils'
 import { Inter as FontSans } from "next/font/google"
 
 export const fontSans = FontSans({
@@ -23,15 +23,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={cn(
-          "bg-neutral-900 text-neutral-300",
-          fontSans.variable
-      )}
+    <html lang="en" className='dark' style={{ colorScheme: 'dark' }}>
+      <body className={`${fontSans.className}`}
       >
-        <main className="min-h-screen flex flex-col items-center">
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
           {children}
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   )

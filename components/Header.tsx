@@ -1,44 +1,91 @@
-import NextLogo from './NextLogo'
-import SupabaseLogo from './SupabaseLogo'
+"use client"
+
+import * as React from "react"
+import Link from "next/link"
+import logo from "../components/Logo.png"
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu"
+import { cn } from "@/utils"
+import { ModeToggle } from "./ModeToggle"
+import Image from "next/image"
+import { Separator } from "./ui/separator"
+
+const links: { title: string; href: string }[] = [
+  {
+    title: "Blog",
+    href: "/blog"
+  },
+  {
+    title: "About",
+    href: "/about"
+  },
+  {
+    title: "Account",
+    href: "/account"
+  },
+]
 
 export default function Header() {
   return (
-    <div className="flex flex-col gap-16 items-center">
-      <div className="flex gap-8 justify-center items-center">
-        <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <SupabaseLogo />
-        </a>
-        <span className="border-l rotate-45 h-6" />
-        <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-          <NextLogo />
-        </a>
+    <>
+    <div className="flex justify-between w-screen px-2 md:px-4 mt-2 items-center">
+      <NavigationMenu>
+        <NavigationMenuList className="gap-6">
+          <NavigationMenuItem className="md:block hidden">
+              <Link href="/home">
+                <Image priority src={logo} alt="GC Blog Logo" width={100} height={100} />
+              </Link>
+          </NavigationMenuItem>
+          {links.map((link) => (
+                  <NavigationMenuItem
+                    key={link.title}
+                    title={link.title}
+                  >
+                    <Link
+                     href={link.href}
+                    >
+                      {link.title}                 
+                    </Link>
+                  </NavigationMenuItem>
+                ))}
+        </NavigationMenuList>
+      </NavigationMenu>
+      <div>
+        <ModeToggle />
       </div>
-      <h1 className="sr-only">Supabase and Next.js Starter Template</h1>
-      <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-        The fastest way to build apps with{' '}
-        <a
-          href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Supabase
-        </a>{' '}
-        and{' '}
-        <a
-          href="https://nextjs.org/"
-          target="_blank"
-          className="font-bold hover:underline"
-          rel="noreferrer"
-        >
-          Next.js
-        </a>
-      </p>
-      <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
     </div>
+    <Separator className="mt-2 mb-4" />
+    </>
   )
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = "ListItem"
