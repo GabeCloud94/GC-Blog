@@ -1,5 +1,11 @@
-import { GeistSans } from 'geist/font/sans'
 import './globals.css'
+import { cn } from '@/utils'
+import { Inter as FontSans } from "next/font/google"
+
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -17,8 +23,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
-      <body className="bg-background text-foreground">
+    <html lang="en">
+      <body className={cn(
+          "bg-neutral-900 text-neutral-300",
+          fontSans.variable
+      )}
+      >
         <main className="min-h-screen flex flex-col items-center">
           {children}
         </main>
