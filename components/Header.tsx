@@ -33,7 +33,7 @@ const links: { title: string; href: string }[] = [
 export default function Header() {
   return (
     <>
-    <div className="flex justify-between w-screen px-2 md:px-4 mt-2 items-center">
+    <div className="flex justify-between w-full px-2 md:px-4 mt-2 items-center">
       <NavigationMenu>
         <NavigationMenuList className="gap-6">
           <NavigationMenuItem className="md:block hidden">

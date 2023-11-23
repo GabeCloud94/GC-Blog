@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
+import { cn } from '@/utils'
 import { Inter as FontSans } from "next/font/google"
 
 export const fontSans = FontSans({
@@ -24,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='dark' style={{ colorScheme: 'dark' }}>
-      <body className={`${fontSans.className}`}
+      <body className={cn(
+          "antialiased",
+          fontSans.className
+      )}
       >
         <ThemeProvider
             attribute="class"
