@@ -48,8 +48,10 @@ export default function Header() {
           <NavigationMenuTrigger className="text-base pr-0"><Link legacyBehavior passHref href="/blog">Blog</Link></NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <ListItem href="/blog" title="All Posts" />
                 <ListItem href="/blog/favorites" title="Favorites" />
                 <ListItem href="/blog/my-comments" title="My Comments" />
+                <ListItem href="/blog/new" title="New Blog" />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
