@@ -6,20 +6,21 @@ import logo from "../components/Logo.png"
 
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
+  
 } from "@/components/ui/navigation-menu"
+
 import { cn } from "@/utils"
 import { ModeToggle } from "./ModeToggle"
 import Image from "next/image"
 import { Separator } from "./ui/separator"
 
 const links: { title: string; href: string }[] = [
-  {
-    title: "Blog",
-    href: "/blog"
-  },
+
   {
     title: "About",
     href: "/about"
@@ -29,6 +30,8 @@ const links: { title: string; href: string }[] = [
     href: "/account"
   },
 ]
+
+
 
 export default function Header() {
   return (
@@ -41,11 +44,21 @@ export default function Header() {
                 <Image priority src={logo} alt="GC Blog Logo" width={100} height={100} />
               </Link>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+          <NavigationMenuTrigger className="text-base pr-0"><Link legacyBehavior passHref href="/blog">Blog</Link></NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                <ListItem href="/blog/favorites" title="Favorites" />
+                <ListItem href="/blog/my-comments" title="My Comments" />
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
           {links.map((link) => (
                   <NavigationMenuItem
                     key={link.title}
                     title={link.title}
                   >
+                    
                     <Link
                      href={link.href}
                     >
