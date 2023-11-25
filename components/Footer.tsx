@@ -4,12 +4,12 @@ import { Separator } from "@/components/ui/separator"
 
 const Footer = () => {
   return (
-    <div className="fixed bottom-0 py-4 w-screen">
+    <footer className="fixed bottom-0 pb-4 w-full bg-neutral-100 shadow-lg dark:shadow-white shadow-black dark:bg-neutral-950 ">
       <Separator className="mb-4" />
-      <form action="/auth/signout" method="post">
+      <form className="" action="/auth/signout" method="post">
         <Button variant="outline" className='mx-auto button text-xl flex items-center justify-center' type='submit'>Sign Out</Button>
       </form>
-    </div>
+    </footer>
   )
 }
 

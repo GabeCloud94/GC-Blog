@@ -36,7 +36,7 @@ const links: { title: string; href: string }[] = [
 export default function Header() {
   return (
     <>
-    <div className="flex justify-between w-full px-2 md:px-4 mt-2 items-center">
+    <header className="flex justify-between w-full px-2 md:px-4 mt-2 items-center">
       <NavigationMenu>
         <NavigationMenuList className="gap-6">
           <NavigationMenuItem className="md:block hidden">
@@ -48,7 +48,7 @@ export default function Header() {
           <NavigationMenuTrigger className="text-base pr-0"><Link legacyBehavior passHref href="/blog">Blog</Link></NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <ListItem href="/blog" title="All Posts" />
+                <ListItem href="/blog" title="Recent Posts" />
                 <ListItem href="/blog/favorites" title="Favorites" />
                 <ListItem href="/blog/my-comments" title="My Comments" />
                 <ListItem href="/blog/new" title="New Blog" />
@@ -73,7 +73,7 @@ export default function Header() {
       <div>
         <ModeToggle />
       </div>
-    </div>
+    </header>
     <Separator className="mt-2 mb-4" />
     </>
   )
