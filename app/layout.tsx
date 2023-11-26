@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className='dark' style={{ colorScheme: 'dark' }}>
       <body className={cn(
-          "antialiased",
+          "antialiased min-h-screen relative",
           fontSans.className
       )}
       >

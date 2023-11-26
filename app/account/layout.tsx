@@ -9,7 +9,9 @@ const Layout = ({
   return (
       <main>
         <Header />
-        {children}
+        <div className="min-h-screen relative">
+          {children}
+        </div>
       </main>
   );
 };
