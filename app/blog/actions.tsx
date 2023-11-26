@@ -5,8 +5,9 @@ import { revalidateTag } from "next/cache";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import BlogCard from "./BlogCard";
 
-export const fetchBlogPosts = async (offset: number, limit: number, PAGE_COUNT: number, from: number, to: number) => {
+export const fetchBlogPosts = async (limit: number, from: number, to: number) => {
   
 
   const cookieStore = cookies()
@@ -17,5 +18,12 @@ export const fetchBlogPosts = async (offset: number, limit: number, PAGE_COUNT: 
     .order('created_at', { ascending: false})
     .limit(limit)
 
-    return posts;
-}
+    if (!posts) {
+      return <p>No posts found.</p>
+    } else {
+
+    return posts.map((post) => (
+
+      <BlogCard key={post.id} post={post} />
+    ))
+}}

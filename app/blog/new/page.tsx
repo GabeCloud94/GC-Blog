@@ -61,7 +61,7 @@ export default function NewBlog() {
     <>
       <h1 className="text-center text-3xl mb-6 pt-4">New Blog</h1>
       <form action={createBlog}>
-        <div className="flex flex-col max-w-2xl mx-4 gap-4">
+        <div className="flex flex-col max-w-2xl mx-4 gap-4 md:mx-auto">
           <label htmlFor="title">Blog Title</label>
           <Input className="p-4" type="text" name="title" id="title" />
           <label htmlFor="title">Blog Image</label>
