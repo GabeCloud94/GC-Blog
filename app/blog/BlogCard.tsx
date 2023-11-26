@@ -13,7 +13,7 @@ const variants = {
 
 export default function BlogCard({post, from}: any) {
   return (
-    <MotionDiv variants={variants} initial="hidden" animate="visible" transition={{ delay: from * .05, ease: 'easeInOut', duration: .5,}} viewport={{ amount: 0 }} className='flex flex-col w-full pt-4 items-center'>
+    <MotionDiv variants={variants} initial="hidden" animate="visible" transition={{ delay: from * .25, ease: 'easeInOut', duration: 1,}} viewport={{ amount: 0 }} className='flex flex-col w-full pt-4 items-center'>
             <div className='flex flex-col text-center mx-auto gap-4 md:gap-0 md:text-left md:flex-row justify-center md:justify-between items-center px-4 md:max-w-3xl lg:max-w-5xl w-full'>
               <div className='flex flex-col w-3/4'>
                 <h2 className='text-2xl mb-6'>{post.title}</h2>

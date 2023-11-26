@@ -88,7 +88,7 @@ export default function AccountForm({ session }: { session: Session | null }) {
   }
 
   return (
-    <div className='flex justify-center items-center h-full w-full'>
+    <div className='flex justify-center items-center h-full w-full mt-6'>
       <Card className="flex flex-col justify-center md:w-2/3 md:max-w-xl items-center form-widget">
         <CardHeader className='text-center'>
           <CardTitle className='text-3xl'>Account Page</CardTitle>
