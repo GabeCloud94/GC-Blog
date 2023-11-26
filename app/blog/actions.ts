@@ -6,27 +6,16 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-interface FormData {
-  title: string,
-  content: string,
-  image: string
-}
+export const fetchBlogPosts = async (offset: number, limit: number, PAGE_COUNT: number, from: number, to: number) => {
+  
 
-export async function createBlog( formData: FormData) {
   const cookieStore = cookies()
-  const supabase = createClient(cookieStore);
+    const supabase = createClient(cookieStore);
+    const { data: posts } = await supabase.from("posts")
+    .select()
+    .range(from, to)
+    .order('created_at', { ascending: false})
+    .limit(limit)
 
-
-
-  const { error } = await supabase
-      .from('posts')
-      .insert({ title: formData.title, content: formData.content, image: formData.image})
-
-      if (error) {
-        return 'failed';
-      
-      }
-      revalidateTag('posts') // Update cached posts
-      redirect(`/blog`) // Navigate to new route  
-      
+    return posts;
 }
