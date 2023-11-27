@@ -20,7 +20,7 @@ export default function BlogCard({post, from}: any) {
                 <div className="max-w-md mb-6 rounded-full flex justify-center md:justify-start">
                   <Image className='rounded-full w-48 h-48 object-cover object-center' loading="lazy" alt={post.title} src={post.image} width={400} height={400} />
                 </div>
-                <h3 className='text-sm'>Posted at: {new Date(post.created_at).toLocaleString()}</h3>
+                <h3 className='text-sm'>Posted on: {new Date(post.created_at).toLocaleDateString()}</h3>
                 <p className='text-lg truncate'>{post.blog_paragraph_1}</p>
               </div>
               <div>
