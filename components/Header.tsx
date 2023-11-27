@@ -17,7 +17,6 @@ import {
 import { cn } from "@/utils"
 import { ModeToggle } from "./ModeToggle"
 import Image from "next/image"
-import { Separator } from "./ui/separator"
 
 const links: { title: string; href: string }[] = [
 
@@ -45,7 +44,7 @@ export default function Header() {
               </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-base pr-0">Blog</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-base">Blog</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <ListItem href="/blog" title="Recent Posts" />
@@ -59,6 +58,7 @@ export default function Header() {
                   <NavigationMenuItem
                     key={link.title}
                     title={link.title}
+                    className="transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none px-4 py-2 rounded-md"
                   >
                     
                     <Link

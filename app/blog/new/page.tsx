@@ -66,8 +66,8 @@ export default function NewBlog() {
           <Input className="p-4" type="text" name="title" id="title" required />
           <label htmlFor="title">Blog Image</label>
           <Input className="p-4" type="text" name="image" id="image" required />
-          <label htmlFor="content">Blog Paragraph 1</label>
-          <Textarea placeholder="Insert Blog Paragraph 1 Content Here." name="blog_paragraph_1" id="blog-paragraph-1" required />
+          <label htmlFor="blog_paragraph_1">Blog Paragraph 1</label>
+          <Textarea placeholder="Insert Blog Paragraph 1 Content Here." name="blog_paragraph_1" id="blog_paragraph_1" required />
         <Button type="submit">Submit</Button>
         </div>
       </form>

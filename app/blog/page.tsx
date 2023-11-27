@@ -1,9 +1,9 @@
 import { fetchBlogPosts } from './actions';
-import { LoadMore } from '@/components/LoadMore';
+import { LoadMore } from '@/app/blog/LoadMore';
 
 
 
-export const revalidate = 60
+
 
 
 
