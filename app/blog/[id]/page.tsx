@@ -1,13 +1,15 @@
-import { fetchBlogPost } from '../actions';
+import { Suspense } from "react"
+import PostPage from "./PostPage"
+import SinglePostSkeleton from "./SinglePostSkeleton"
 
-export const revalidate = 60
 
-export default async function Post({ params }: { params: { id: string } }) {
-  const post = await fetchBlogPost(params)
 
-  return (
-    <>
-      {post}
-    </>
+export default function Page({ params }: { params: { id: string } }) {
+  return(
+  <>
+    <Suspense fallback={<SinglePostSkeleton />}>
+      <PostPage params={params} />
+    </Suspense>
+  </>
   )
 }
