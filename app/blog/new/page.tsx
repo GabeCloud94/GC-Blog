@@ -6,6 +6,7 @@ import { createBlogPost } from "../actions"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useToast } from "@/components/ui/use-toast"
 
 import {
   Form,
@@ -26,7 +27,7 @@ const formSchema = z.object({
  
 
 export default function NewBlog() {
-
+  const { toast } = useToast()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,6 +38,14 @@ export default function NewBlog() {
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
     createBlogPost(data)
   }
 

@@ -10,11 +10,11 @@ import { redirect } from "next/navigation";
 import BlogCard from "./BlogCard";
 
 import SinglePost from './[id]/SinglePost';
-import { toast } from "@/components/ui/use-toast";
+
 
 
 export async function createBlogPost( data: any) {
-  
+
 
   const cookieStore = cookies()
 
@@ -47,14 +47,6 @@ export async function createBlogPost( data: any) {
         console.log(`${error}`)
       
       }
-      toast({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
-      })
       revalidateTag('posts') // Update cached posts
       redirect(`/blog`) // Navigate to new route  
       
