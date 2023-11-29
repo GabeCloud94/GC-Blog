@@ -39,7 +39,7 @@ export default function Header() {
       <NavigationMenu>
         <NavigationMenuList className="gap-6">
           <NavigationMenuItem className="md:block hidden">
-              <Link href="/home">
+              <Link href="/blog">
                 <Image priority src={logo} alt="GC Blog Logo" width={100} height={100} />
               </Link>
           </NavigationMenuItem>

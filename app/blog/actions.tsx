@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import BlogCard from "./BlogCard";
 
 import SinglePost from './[id]/SinglePost';
+import EditPostPage from './[id]/edit/EditPostPage';
 
 
 
@@ -131,3 +132,80 @@ export const fetchBlogPost = async (params: {id: string}) => {
 
 }
 
+export const fetchUpdateBlogPost = async (params: {id: string}) => {
+  const cookieStore = cookies()
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+  
+
+  const { data: posts} = await supabase
+    .from("posts")
+    .select('id, title, image, blog_paragraph_1')
+    .match({id: `${params.id}`})
+
+    if (!posts) {
+      return <p>No posts found.</p>
+    }
+  
+  return posts.map((post) => (
+      <EditPostPage key={post.id} id={post.id} title={post.title} image={post.image} blog_paragraph_1={post.blog_paragraph_1} />
+  ))
+
+}
+
+export async function updateBlogPost(data: any, id: string) {
+
+
+  const cookieStore = cookies()
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+
+
+
+
+  const { error } = await supabase
+      .from('posts')
+      .update({"title": data.title, "image": data.image, "blog_paragraph_1": data.blog_paragraph_1, })
+      .match({id: `${id}`})
+
+      if (error) {
+        console.log(`${error}`)
+      
+      }
+      revalidateTag('posts') // Update cached posts
+      redirect(`/blog`) // Navigate to new route    
+      
+      
+}
