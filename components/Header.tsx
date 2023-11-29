@@ -35,7 +35,7 @@ const links: { title: string; href: string }[] = [
 export default function Header() {
   return (
     <>
-    <header className="flex justify-between top-0 sticky z-10 bg-neutral-100 dark:bg-neutral-950 w-full px-2 md:px-4 py-2 border-b-2 border-neutral-200 dark:border-neutral-800 items-center">
+    <header className="flex justify-between top-0 sticky z-10 bg-background w-full px-2 md:px-4 py-2 border-b-2 border-muted items-center">
       <NavigationMenu>
         <NavigationMenuList className="gap-6">
           <NavigationMenuItem className="md:block hidden">
@@ -47,9 +47,7 @@ export default function Header() {
           <NavigationMenuTrigger className="text-base">Blog</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <ListItem href="/blog" title="Recent Posts" />
-                <ListItem href="/blog/favorites" title="Favorites" />
-                <ListItem href="/blog/my-comments" title="My Comments" />
+                <ListItem href="/blog" title="All Posts" />
                 <ListItem href="/blog/new" title="New Blog" />
               </ul>
             </NavigationMenuContent>
