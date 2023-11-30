@@ -24,7 +24,7 @@ export default function BlogCard({post, from}: any) {
                 <p className='text-lg truncate'>{post.blog_paragraph_1}</p>
               </div>
               <div>
-                <Link href={`/blog/${post.id}`}><Button variant="outline">View Post</Button></Link>
+              <Button variant="default" asChild><Link href={`/blog/${post.id}`}>View Post</Link></Button>
               </div>
             </div>
             <Separator className='mt-6' />

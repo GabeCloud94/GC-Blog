@@ -48,8 +48,8 @@ export default function EditPostPage( post: {id: string, title: string, image: s
 
   return (
     <div >
-      <Button className="absolute top-4 left-4 text-2xl" asChild variant="ghost"><Link href={`/blog/${post.id}`}><AiOutlineRollback /></Link></Button>
-      <h1 className="text-center text-3xl mb-6 pt-4">Edit Blog</h1>
+      <Button className="text-2xl mt-4 ml-4" asChild variant="ghost"><Link href={`/blog/${post.id}`}><AiOutlineRollback /></Link></Button>
+      <h1 className="text-center text-3xl mb-6">Edit Blog</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex flex-col max-w-2xl mx-4 gap-4 md:mx-auto">

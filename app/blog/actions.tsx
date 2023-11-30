@@ -127,7 +127,7 @@ export const fetchBlogPost = async (params: {id: string}) => {
     }
   
   return posts.map((post) => (
-      <SinglePost key={post.id} post={post} id={post.id} title={post.title} created_at={post.created_at} image={post.image} blog_paragraph_1={post.blog_paragraph_1} />
+      <SinglePost key={post.id} id={post.id} title={post.title} created_at={post.created_at} image={post.image} blog_paragraph_1={post.blog_paragraph_1} />
   ))
 
 }
@@ -209,3 +209,39 @@ export async function updateBlogPost(data: any, id: string) {
       
       
 }
+
+export const deleteBlogPost = async (id: string) => {
+  const cookieStore = cookies()
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+  
+
+  const { error } = await supabase
+    .from("posts")
+    .delete()
+    .match({id: `${id}`})
+
+    if (error) {
+      alert(`${error}`)
+    }
+    
+    revalidateTag('posts') // Update cached posts
+    redirect(`/blog`) // Navigate to new route 
+}
+
