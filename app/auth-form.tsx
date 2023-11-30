@@ -16,7 +16,7 @@ export default function AuthForm() {
       theme="dark"
       showLinks={false}
       providers={['google']}
-      redirectTo="http://supabase-gabecloud94.vercel.app/auth/callback"
+      redirectTo="http://supabase-gabecloud94.vercel.app/blog"
       onlyThirdPartyProviders
     />
   )
