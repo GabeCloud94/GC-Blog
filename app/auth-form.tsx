@@ -6,7 +6,7 @@ import { createClient } from '@supabase/supabase-js'
 
 
 export default function AuthForm() {
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  const supabase = createClient<Database>(process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,)
 
   return (
@@ -17,7 +17,7 @@ export default function AuthForm() {
       theme="dark"
       showLinks={false}
       providers={['google']}
-      redirectTo="https://supabase-blog-gabecloud94.vercel.app/auth/callback"
+      redirectTo="https://supabase-blog-tau.vercel.app/auth/callback"
       onlyThirdPartyProviders
     />
   )
