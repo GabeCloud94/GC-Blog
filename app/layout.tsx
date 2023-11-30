@@ -1,13 +1,10 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 import { cn } from '@/utils'
-import { Inter as FontSans } from "next/font/google"
+import { inter } from '@/components/ui/fonts' 
 import { Toaster } from '@/components/ui/toaster'
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
+
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -28,7 +25,7 @@ export default function RootLayout({
     <html lang="en" className='dark' style={{ colorScheme: 'dark' }}>
       <body className={cn(
           "antialiased min-h-screen relative",
-          fontSans.variable
+          inter.className
       )}
       >
         <ThemeProvider
