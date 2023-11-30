@@ -16,7 +16,7 @@ export default function AuthForm() {
       theme="dark"
       showLinks={false}
       providers={['google']}
-      redirectTo="https://supabase-blog-tau.vercel.app/blog"
+      redirectTo="https://supabase-blog-tau.vercel.app/auth/callback"
       onlyThirdPartyProviders
     />
   )
