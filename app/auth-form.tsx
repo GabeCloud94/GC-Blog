@@ -1,13 +1,12 @@
 'use client'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/utils/database.types'
-import { createClient } from '@supabase/supabase-js'
 
 
 export default function AuthForm() {
-  const supabase = createClient<Database>(process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,)
+  const supabase = createClientComponentClient<Database>()
 
   return (
     <Auth
@@ -17,7 +16,7 @@ export default function AuthForm() {
       theme="dark"
       showLinks={false}
       providers={['google']}
-      redirectTo="https://supabase-blog-tau.vercel.app/auth/callback"
+      redirectTo="http://supabase-gabecloud94.vercel.app/auth/callback"
       onlyThirdPartyProviders
     />
   )
