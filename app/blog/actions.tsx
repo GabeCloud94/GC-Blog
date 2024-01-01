@@ -10,6 +10,7 @@ import BlogCard from "./BlogCard";
 
 import SinglePost from './[id]/SinglePost';
 import EditPostPage from './[id]/edit/EditPostPage';
+import { stripHtml } from "string-strip-html";
 
 
 
@@ -114,18 +115,20 @@ export const fetchBlogPostMetadata = async (params: {id: string}) => {
   )
   
 
-  const { data: posts} = await supabase
+
+
+  const { data: posts } = await supabase
     .from("posts")
     .select('id, title, blog_paragraph_1')
-    .match({id: `${params.id}`})
+    .match({ id: `${params.id}` });
 
-    return {
-      title: posts?.[0]?.title || 'GC Blog Post',
-      description: posts?.[0]?.blog_paragraph_1 || 'GC Blog Post Description',
-    }
+  const description = stripHtml(posts?.[0]?.blog_paragraph_1 || '').result.substring(0, 150);
 
-  }
-
+  return {
+    title: posts?.[0]?.title || 'GC Blog Post',
+    description: description || 'GC Blog Post Description',
+  };
+}
 
 export const fetchBlogPost = async (params: {id: string}) => {
   const cookieStore = cookies()
