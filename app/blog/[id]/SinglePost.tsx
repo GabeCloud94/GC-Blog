@@ -20,7 +20,7 @@ const SinglePost = ( post: {id: string, title: string, created_at: string, image
       <div className="max-w-lg mx-auto mb-6">
         <Image loading="eager" alt={post.title} src={post.image} width={600} height={600} />
       </div>
-      <p className='text-lg'>{post.blog_paragraph_1}</p>
+      <div dangerouslySetInnerHTML={{ __html: post.blog_paragraph_1}} />
     </div>
   )
 }
