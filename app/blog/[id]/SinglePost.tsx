@@ -3,6 +3,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { AiFillEdit, AiOutlineRollback } from "react-icons/ai";
 import DeletePost from "../DeletePost";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Post = { title: 'Post Title', blog_paragraph_1: 'First paragraph' };
+export async function generateMetadata(
+  { title, blog_paragraph_1 }: Post,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: title,
+    description: blog_paragraph_1,
+  }
+}
 
 const SinglePost = ( post: {id: string, title: string, created_at: string, image: string, blog_paragraph_1: string} ) => {
 
