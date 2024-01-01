@@ -97,9 +97,9 @@ export default function EditPostPage( post: {id: string, title: string, image: s
           name="blog_paragraph_1"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Blog Paragraph 1</FormLabel>
+              <FormLabel>Blog Content</FormLabel>
               <FormControl>
-                <Textarea {...field} className="resize-none" />
+                <Textarea {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
