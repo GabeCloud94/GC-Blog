@@ -21,7 +21,7 @@ export default function BlogCard({post, from}: any) {
                   <Image className='rounded-full w-48 h-48 object-cover object-center' loading="lazy" alt={post.title} src={post.image} width={400} height={400} />
                 </div>
                 <h3 className='text-sm'>Posted on: {new Date(post.created_at).toLocaleDateString()}</h3>
-                <p className='text-lg truncate'>{post.blog_paragraph_1}</p>
+                <div className="text-lg truncate" dangerouslySetInnerHTML={{ __html: post.blog_paragraph_1}} />
               </div>
               <div>
               <Button variant="default" asChild><Link href={`/blog/${post.id}`}>View Post</Link></Button>
