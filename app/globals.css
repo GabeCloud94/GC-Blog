@@ -61,4 +61,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  .blog-heading {
+    font-size: 1.5rem;
+  }
+  .blog-body {
+    margin-bottom: 1.5rem;
+  }
 }
