@@ -3,24 +3,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { AiFillEdit, AiOutlineRollback } from "react-icons/ai";
 import DeletePost from "../DeletePost";
-import { Metadata } from "next";
-import Head from "next/head";
+
 
 const SinglePost = ( post: {id: string, title: string, created_at: string, image: string, blog_paragraph_1: string} ) => {
-
-  const strippedTitle = post.title.replace(/(<([^>]+)>)/gi, "");
-  const strippedDescription = post.blog_paragraph_1.replace(/(<([^>]+)>)/gi, "");
-  const metadata: Metadata =  {
-      title: `${strippedTitle}`,
-      description: `${strippedDescription}`
-  }
   
   return (
     <div className='md:max-w-3xl lg:max-w-5xl px-6 mx-auto pt-4' key={post.id}>
-      <Head>
-      <meta name="title" content={metadata.title?.toString() || ''} />
-        <meta name="description" content={metadata.description || ''} />
-      </Head>
       <div className="flex justify-between">
         <Button className="text-2xl" asChild variant="ghost"><Link href={`/blog`}><AiOutlineRollback /></Link></Button>
         <div className="flex gap-4">

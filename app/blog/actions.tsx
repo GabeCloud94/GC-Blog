@@ -92,7 +92,39 @@ export const fetchBlogPosts = async (limit: number, from: number, to: number) =>
     ))
 }}
 
+export const fetchBlogPostMetadata = async (params: {id: string}) => {
+  const cookieStore = cookies()
 
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: CookieOptions) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: CookieOptions) {
+          cookieStore.set({ name, value: '', ...options })
+        },
+      },
+    }
+  )
+  
+
+  const { data: posts} = await supabase
+    .from("posts")
+    .select('id, title, blog_paragraph_1')
+    .match({id: `${params.id}`})
+
+    return {
+      title: posts?.[0]?.title || 'GC Blog Post',
+      description: posts?.[0]?.blog_paragraph_1 || 'GC Blog Post Description',
+    }
+
+  }
 
 
 export const fetchBlogPost = async (params: {id: string}) => {
